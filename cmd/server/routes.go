@@ -95,6 +95,9 @@ func SetupRoutes(app *fiber.App, config *RouteConfig) {
 			// POST /admin/user/create - Create new user (admin can choose role)
 			user.Post("/create", config.UserHandler.CreateUser)
 
+			// GET /admin/user/deleted - List all soft deleted users
+			user.Get("/deleted", config.UserHandler.GetAllDeletedUsers)
+
 			// GET /admin/user/:id - Get specific user by ID
 			user.Get("/:id", config.UserHandler.GetUserByID)
 
@@ -103,9 +106,6 @@ func SetupRoutes(app *fiber.App, config *RouteConfig) {
 
 			// DELETE /admin/user/:id - Soft delete user by ID
 			user.Delete("/:id", config.UserHandler.DeleteUser)
-
-			// GET /admin/user/deleted - List all soft deleted users
-			user.Get("/deleted", config.UserHandler.GetAllDeletedUsers)
 
 			// DELETE /admin/user/permanent/:id - Hard delete user (permanent)
 			user.Delete("/permanent/:id", config.UserHandler.HardDeleteUser)

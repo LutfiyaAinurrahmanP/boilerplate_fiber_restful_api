@@ -61,7 +61,7 @@ func JWTAuthMiddleware(jwtSecret string, tokenRepo repositories.TokenRepository)
 		}
 
 		// 8. Set user info ke context untuk digunakan di handler
-		c.Locals("userId", uint(claims["sub"].(float64)))
+		c.Locals("userID", uint(claims["sub"].(float64)))
 		c.Locals("username", claims["username"].(string))
 		c.Locals("role", claims["role"].(string))
 
